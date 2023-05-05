@@ -16,14 +16,12 @@ public class UserController {
 
     @PostMapping()
     public ResponseEntity<String> createUser(@RequestBody CreateUserRequest request) {
-        if (request.name.length() < 3) {
-            return ResponseEntity.unprocessableEntity().body("Invalid user");
-        }
-    // pode ser criada classe de validação
-       var response = _userService.createUser(request);
-        //return ResponseEntity.ok().body(response);
+        var response = _userService.createUser(request);
+
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
+    // pode ser criada classe de validação
+
     @GetMapping
     public ResponseEntity<FindUserResponse> getUser(String email) {
         return ResponseEntity.ok().body(_userService.findUserByEmail(email));

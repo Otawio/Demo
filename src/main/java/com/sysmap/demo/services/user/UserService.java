@@ -16,6 +16,10 @@ public class UserService implements IUserService {
     public String createUser(CreateUserRequest request) {
         var user = new User(request.name, request.email, request.password);
 
+        if (!_userRepository.findUserByEmail(request.email).isEmpty()) {
+
+        }
+
         _userRepository.save(user);
 
         _eventService.send(user.getId().toString());
@@ -28,5 +32,9 @@ public class UserService implements IUserService {
        var response = new FindUserResponse(user.getId(), user.getName(), user.getEmail());
 
        return response;
+    }
+
+    public User getUser(String email) {
+        return _userRepository.findUserByEmail(email).get();
     }
 }
