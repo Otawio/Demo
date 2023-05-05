@@ -2,8 +2,11 @@ package com.sysmap.demo.services.authentication;
 
 import com.sysmap.demo.services.security.IJwtService;
 import com.sysmap.demo.services.user.IUserService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AuthenticationService implements IAuthenticationService {
 
     @Autowired
